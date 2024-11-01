@@ -1,6 +1,6 @@
 ---
 title: "Assignment 10: How much for that car?"
-author: "FirstName LastName"
+author: "Madina Kanafina"
 date: "`r Sys.Date()`"
 documentclass: article
 geometry: margin=1in
@@ -50,6 +50,21 @@ car_prices <- read_rds("car_price_data.rds")
 
 ## Exercise 1
 
+i. Price and mileage are the two continuous variables in car_prices dataset.
+
+ii. 
+```{r}
+car_prices %>%
+  pivot_longer(cols = c(Liter, Mileage),
+               names_to = "name",
+               values_to = "value") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = value, y = Price)) +
+  facet_wrap(~name, scales = "free_x") +
+  labs(title = "Relationship between Price and Car Mileage/Fuel Capacity",
+       x = "Value (Liter and Mileage)",
+       y = "Price")
+```
 
 
 
