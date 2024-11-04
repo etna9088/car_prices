@@ -139,8 +139,17 @@ iv. Independent Observations: The plot doesn't provide enough evidence for or ag
 
 ## Exercise 6
 
+```{r}
+continuous_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = .fitted, y = .resid)) +
+  geom_hline(yintercept = 0) +
+  labs(title = "Residuals vs Predicted Values",
+       x = "Predicted Price",
+       y = "Residuals")
+```
 
-
+i. The spread of residuals increase as the predicted price values increase. For lower predicted prices, the residuals are clustered around the reference line at y = 0, while for higher predicted prices, the residuals show greater spread and variability. Overall, it suggests violation of the constant variability.
 
 ## Exercise 7
 
