@@ -119,8 +119,23 @@ continuous_df <- augment(continuous_model, car_prices)
   
 ## Exercise 5
 
+```{r}
+continuous_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = .fitted, y = Price)) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(title = "Observed vs Predicted",
+       x = "Predicted Price Values",
+       y = "Actual Prices")
+```
 
+i. Linearity: This "Observed vs Predicted" plot's linearity does not capture the actual relationship between the explanatory and response variables because many points deviate significantly from the line, especially as the predicted values increase.
 
+ii. Nearly normal residuals: There is a curve in the spread of points, where the actual prices tend to be higher than predicted for certain ranges.
+
+iii. Constant Variation of Residuals: the spread of actual prices around the predicted line appears to increase as the predicted prices increases. this pattern violates the assumption of constant residual variation.
+
+iv. Independent Observations: The plot doesn't provide enough evidence for or against this assumption. 
 
 ## Exercise 6
 
