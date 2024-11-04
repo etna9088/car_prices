@@ -165,8 +165,18 @@ i. If the residuals were nearly normal, the points would closely follow the refe
 
 ## Exercise 8
 
+```{r}
+car_prices %>%
+  ggplot() +
+  geom_boxplot(aes(x = reorder(Make, Price, FUN=median), y = Price)) +
+  labs(x = "Make of car", title = "Effect of make of car on price")
+```
 
+i. Saturn has the lowest median  price among the car brands shown in this plot.
 
+ii. Cadillac has the greatest interquartile range, indicating a wider spread in prices withing the middle 50% of its data.
+
+iii. Chevrolet, Cadillac, and Pontiac have outliers. They are indicated by the cirles outside the IQR range. 
 
 ## Exercise 9
 
