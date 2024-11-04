@@ -69,9 +69,14 @@ car_prices %>%
 
 ## Exercise 2
 
-
-
-
+```{r}
+continuous_model <- lm(Price ~ (Mileage + Liter), data = car_prices)
+continuous_model %>%
+  glance() %>%
+  select(r.squared)
+continuous_model %>%
+  tidy()
+```
 ## Exercise 3
 
 
