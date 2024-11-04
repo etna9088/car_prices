@@ -213,8 +213,41 @@ glance(mixed_model) %>%
 ```
 ## Exercise 11
 
+i.
+```{r}
+mixed_df <- augment(mixed_model, cars_factor_df)
+```
 
+ii. 
+```{r}
+mixed_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = .fitted, y = Price)) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(title = "Observed vs Predicted",
+       x = "Predicted Price Values",
+       y = "Actual Prices")
+```
 
+iii. 
+```{r}
+mixed_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = .fitted, y = .resid)) +
+  geom_hline(yintercept = 0) +
+  labs(title = "Residuals vs Predicted",
+       x = "Predicted Price",
+       y = "Residuals")
+```
+
+iv. 
+```{r}
+mixed_df %>%
+  ggplot() +
+  geom_qq(aes(sample = .resid)) +
+  geom_qq_line(aes(sample = .resid)) +
+  labs(title = "Q-Q Plot of Residuals")
+```
 
 ## Exercise 12
 
