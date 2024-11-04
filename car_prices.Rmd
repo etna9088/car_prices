@@ -153,8 +153,15 @@ i. The spread of residuals increase as the predicted price values increase. For 
 
 ## Exercise 7
 
+```{r}
+continuous_df %>%
+  ggplot() +
+  geom_qq(aes(sample = .resid)) +
+  geom_qq_line(aes(sample = .resid)) +
+  labs(title = "Q-Q Plot of Residuals")
+```
 
-
+i. If the residuals were nearly normal, the points would closely follow the reference line. In this plot, there are clear deviations from the line, especially in the tails. Residuals have a non-normal distribution.  
 
 ## Exercise 8
 
