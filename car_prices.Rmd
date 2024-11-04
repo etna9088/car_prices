@@ -180,12 +180,29 @@ iii. Chevrolet, Cadillac, and Pontiac have outliers. They are indicated by the c
 
 ## Exercise 9
 
-
-
+```{r, fig.width=9, fig.asp=1.5}
+car_prices %>%
+  pivot_longer(
+    cols = c(Make, Model, Trim, Type, Cylinder, Doors, Cruise, Sound, Leather), 
+    names_to = "name", 
+    values_to = "value", 
+    values_transform = list(value = as.factor)
+    ) %>%
+  ggplot() +
+  geom_boxplot(aes(x = reorder(value, Price, FUN=median), y = Price)) +
+  facet_wrap(~name, scales = "free_x") +
+  labs(title = "Categorical Variables Box Plots",
+       x = "Categories",
+       y = "Price") +
+  theme(axis.text.x = element_text(angle = 45))
+```
 
 ## Exercise 10
 
-
+```{r}
+cars_factor_df <- car_prices %>%
+  mutate(Cylinder = as.factor(Cylinder))
+```
 
 
 ## Exercise 11
