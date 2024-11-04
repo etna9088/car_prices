@@ -251,9 +251,11 @@ mixed_df %>%
 
 ## Exercise 12
 
+i. Overall, the mixed categories model is a major improvement over the simpler model, as it better fits linearity, and constant variability (as seen in the R^2 values). Although, mixed_df model still has some minor issues with non-normality in the residuals, particularly at high prices.
 
-
+ii. I would use mixed_df model for myself if I were picking a car because it's more reliable than the continuous_df model, because of R^2 values 94% vs. 33% which gives a more accurate prediction of car prices.
 
 ## Academic Integrity statement
 
+AI tools were not used for this assignment.
 
