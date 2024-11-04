@@ -55,18 +55,17 @@ i. Price and mileage are the two continuous variables in car_prices dataset.
 ii. 
 ```{r}
 car_prices %>%
-  pivot_longer(cols = c(Liter, Mileage),
-               names_to = "name",
-               values_to = "value") %>%
+  pivot_longer(
+    cols = Mileage | Liter,
+    names_to = "name",
+    values_to = "value") %>%
   ggplot() +
   geom_point(mapping = aes(x = value, y = Price)) +
   facet_wrap(~name, scales = "free_x") +
-  labs(title = "Relationship between Price and Car Mileage/Fuel Capacity",
+  labs(title = "Price and Car Mileage/Fuel Capacity",
        x = "Value (Liter and Mileage)",
        y = "Price")
 ```
-
-
 
 ## Exercise 2
 
