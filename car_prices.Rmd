@@ -70,7 +70,7 @@ car_prices %>%
 ## Exercise 2
 
 ```{r}
-continuous_model <- lm(Price ~ (Mileage + Liter), data = car_prices)
+continuous_model <- lm(Price ~ Mileage + Liter, data = car_prices)
 continuous_model %>%
   glance() %>%
   select(r.squared)
@@ -113,9 +113,10 @@ if (!is_pdf) {p}
 
 ## Exercise 4
 
-
-
-
+```{r}
+continuous_df <- augment(continuous_model, car_prices)
+```
+  
 ## Exercise 5
 
 
