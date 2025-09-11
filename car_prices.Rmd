@@ -1,28 +1,3 @@
----
-title: "Assignment 10: How much for that car?"
-author: "Madina Kanafina"
-date: "`r Sys.Date()`"
-documentclass: article
-geometry: margin=1in
-fontsize: 11pt
-output:
-  pdf_document:
-    toc: false
-    df_print: kable
-    fig_caption: false
-    number_sections: false
-    dev: pdf
-    highlight: tango
-  html_document:
-    theme: default
-    self_contained: true
-    toc: false
-    df_print: kable
-    fig_caption: false
-    number_sections: false
-    smart: true
-    dev: svg
----
 
 ```{r setup, include = FALSE}
 # DO NOT ALTER THIS CHUNK

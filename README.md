@@ -2,7 +2,7 @@
 
 This project focuses on building a predictive model to accurately estimate the retail price of used General Motors (GM) cars. By analyzing a dataset of over eight hundred vehicles, I developed a comprehensive linear model to help potential buyers and sellers better understand the factors influencing a car's market value. The analysis revealed that a combination of continuous and categorical features can predict a car's price with a high degree of accuracy.
 
-
+### Business Question: 
 
 ### Dataset Overview
 
