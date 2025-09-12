@@ -22,7 +22,7 @@ suppressPackageStartupMessages(library(plotly))
 car_prices <- read_excel("kuiper.xlsx")
 ```
 
-### Price and Car Mileage VS. Fuel Capacity
+#### Price and Car Mileage VS. Fuel Capacity
 
 ```{r}
 car_prices %>%
@@ -38,8 +38,7 @@ car_prices %>%
        y = "Price")
 ```
 
-
-### Continuous Model
+#### Continuous Model
 
 ```{r}
 continuous_model <- lm(Price ~ Mileage + Liter, data = car_prices)
@@ -49,8 +48,7 @@ continuous_model %>%
 continuous_model %>%
   tidy()
 ```
-
-### 3D Model
+#### 3D Model
 
 ```{r}
 # predict model plane over values
@@ -84,13 +82,12 @@ p <- plot_ly() %>%
 if (!is_pdf) {p}
 ```
 
-## Exercise 4
 
 ```{r}
 continuous_df <- augment(continuous_model, car_prices)
 ```
   
-## Exercise 5
+#### Observed vs. Predicted prices
 
 ```{r}
 continuous_df %>%
@@ -102,15 +99,15 @@ continuous_df %>%
        y = "Actual Prices")
 ```
 
-i. Linearity: This "Observed vs Predicted" plot's linearity does not capture the actual relationship between the explanatory and response variables because many points deviate significantly from the line, especially as the predicted values increase.
+**Linearity:** This "Observed vs Predicted" plot's linearity does not capture the actual relationship between the explanatory and response variables because many points deviate significantly from the line, especially as the predicted values increase.
 
-ii. Nearly normal residuals: There is a curve in the spread of points, where the actual prices tend to be higher than predicted for certain ranges.
+**Nearly normal residuals:** There is a curve in the spread of points, where the actual prices tend to be higher than predicted for certain ranges.
 
-iii. Constant Variation of Residuals: the spread of actual prices around the predicted line appears to increase as the predicted prices increases. this pattern violates the assumption of constant residual variation.
+**Constant Variation of Residuals:** the spread of actual prices around the predicted line appears to increase as the predicted prices increases. this pattern violates the assumption of constant residual variation.
 
-iv. Independent Observations: The plot doesn't provide enough evidence for or against this assumption. 
+**Independent Observations:** The plot doesn't provide enough evidence for or against this assumption. 
 
-## Exercise 6
+#### Residuals vs. Predicted values
 
 ```{r}
 continuous_df %>%
@@ -122,9 +119,9 @@ continuous_df %>%
        y = "Residuals")
 ```
 
-i. The spread of residuals increase as the predicted price values increase. For lower predicted prices, the residuals are clustered around the reference line at y = 0, while for higher predicted prices, the residuals show greater spread and variability. Overall, it suggests violation of the constant variability.
+The spread of residuals increase as the predicted price values increase. For lower predicted prices, the residuals are clustered around the reference line at y = 0, while for higher predicted prices, the residuals show greater spread and variability. Overall, it suggests violation of the constant variability.
 
-## Exercise 7
+#### Q-Q Plot of Residuals
 
 ```{r}
 continuous_df %>%
@@ -134,43 +131,58 @@ continuous_df %>%
   labs(title = "Q-Q Plot of Residuals")
 ```
 
-i. If the residuals were nearly normal, the points would closely follow the reference line. In this plot, there are clear deviations from the line, especially in the tails. Residuals have a non-normal distribution.  
+If the residuals were nearly normal, the points would closely follow the reference line. In this plot, there are clear deviations from the line, especially in the tails. Residuals have a non-normal distribution.  
 
-## Exercise 8
+#### BoxPlot
 
 ```{r}
 car_prices %>%
   ggplot() +
   geom_boxplot(aes(x = reorder(Make, Price, FUN=median), y = Price)) +
-  labs(x = "Make of car", title = "Effect of make of car on price")
+  labs(x = "Make of car", title = "Effect of Make of Car on Price")
 ```
 
-i. Saturn has the lowest median  price among the car brands shown in this plot.
+Saturn has the lowest median  price among the car brands shown in this plot. Cadillac has the greatest interquartile range, indicating a wider spread in prices withing the middle 50% of its data. Chevrolet, Cadillac, and Pontiac have outliers. They are indicated by the cirles outside the IQR range. 
 
-ii. Cadillac has the greatest interquartile range, indicating a wider spread in prices withing the middle 50% of its data.
-
-iii. Chevrolet, Cadillac, and Pontiac have outliers. They are indicated by the cirles outside the IQR range. 
-
-## Exercise 9
+#### Categorical Variables Box Plots
 
 ```{r, fig.width=9, fig.asp=1.5}
 car_prices %>%
   pivot_longer(
-    cols = c(Make, Model, Trim, Type, Cylinder, Doors, Cruise, Sound, Leather), 
-    names_to = "name", 
-    values_to = "value", 
+    cols = c(Make, Type, Cylinder, Doors, Cruise, Sound, Leather),
+    names_to = "name",
+    values_to = "value",
     values_transform = list(value = as.factor)
-    ) %>%
+  ) %>%
   ggplot() +
   geom_boxplot(aes(x = reorder(value, Price, FUN=median), y = Price)) +
   facet_wrap(~name, scales = "free_x") +
   labs(title = "Categorical Variables Box Plots",
        x = "Categories",
        y = "Price") +
-  theme(axis.text.x = element_text(angle = 45))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
 ```
 
-## Exercise 10
+#### Box Plots for Trim and Model vs. Price
+
+```{r, fig.width=9, fig.asp=1.5}
+car_prices %>%
+  pivot_longer(
+    cols = c(Trim, Model),
+    names_to = "name",
+    values_to = "value",
+    values_transform = list(value = as.factor)
+  ) %>%
+  ggplot() +
+  geom_boxplot(aes(x = reorder(value, Price, FUN=median), y = Price)) +
+  facet_wrap(~name, scales = "free_x") +
+  labs(title = "Box Plots for Trim and Model",
+       x = "Categories",
+       y = "Price") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6))
+```
+
+#### Predicitive Modeling
 
 ```{r}
 cars_factor_df <- car_prices %>%
@@ -184,14 +196,13 @@ mixed_model %>%
 glance(mixed_model) %>%
   select(r.squared)
 ```
-## Exercise 11
 
-i.
+#### Observed vs. Predicted prices
+
 ```{r}
 mixed_df <- augment(mixed_model, cars_factor_df)
 ```
 
-ii. 
 ```{r}
 mixed_df %>%
   ggplot() +
@@ -202,7 +213,8 @@ mixed_df %>%
        y = "Actual Prices")
 ```
 
-iii. 
+#### Residuals vs. Predicted prices
+
 ```{r}
 mixed_df %>%
   ggplot() +
@@ -213,7 +225,6 @@ mixed_df %>%
        y = "Residuals")
 ```
 
-iv. 
 ```{r}
 mixed_df %>%
   ggplot() +
@@ -222,13 +233,7 @@ mixed_df %>%
   labs(title = "Q-Q Plot of Residuals")
 ```
 
-## Exercise 12
+#### Conclusion
 
-i. Overall, the mixed categories model is a major improvement over the simpler model, as it better fits linearity, and constant variability (as seen in the R^2 values). Although, mixed_df model still has some minor issues with non-normality in the residuals, particularly at high prices.
-
-ii. I would use mixed_df model for myself if I were picking a car because it's more reliable than the continuous_df model, because of R^2 values 94% vs. 33% which gives a more accurate prediction of car prices.
-
-## Academic Integrity statement
-
-AI tools were not used for this assignment.
+Overall, the mixed categories model is a major improvement over the simpler model, as it better fits linearity, and constant variability (as seen in the R^2 values). Although, mixed_df model still has some minor issues with non-normality in the residuals, particularly at high prices. I would use mixed_df model for myself if I were picking a car because it's more reliable than the continuous_df model, because of R - squared values 94% vs. 33% which gives a more accurate prediction of car prices.
 

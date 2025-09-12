@@ -40,30 +40,46 @@ This project focuses on building a predictive model to accurately estimate the r
 
 Initial exploration of the data revealed that Mileage has a clear inverse relationship with price. As a car's mileage increases, its price generally decreases, a trend that is visually apparent in the scatter plot below.
 
+![Scatter Plot of Price and Car Mileage vs. Fuel Capacity](images/price_vs_value.png)
 
 
-##### Predictive Modeling
+However, a more significant finding was the strong influence of categorical variables. I've found out that a car's **Make** played a substantial role in determining its price. The box plot below illustrates the notable price differences across various car makes, with some brands like Cadillac consistently holding higher values than others.
 
-Two linear regression models were developed and compared to address the research question. The approach was to start with a simple model and then build a more complex one by incorporating additional features identified during EDA.
+![Effect of Make of Car on Price](images/price_vs_make.png)
 
-* **Continuous Model:** An initial model was built using only the continuous variables **Mileage** and **Liter** to predict **Price**.
-* **Mixed Model:** A more complex model was developed by adding key categorical variables such as **Make**, **Type**, and **Cylinder**, which were identified as having a strong influence on price.
+
+While other variables like Trim and Model also showed a strong relationship with price, their large number of unique categories makes them difficult to visualize in a single plot.
+
+![Box Plots for Trim and Make of Car vs. Prices](images/trim_model_boxplots.png)
 
 
 #### Model Performance
 
-A comparison of the two models demonstrated that the **Mixed Model** significantly outperformed the **Continuous Model** in terms of predictive power.
+To quantify these relationships, I compared two linear regression models. The results clearly demonstrated that a model incorporating both continuous and categorical variables significantly outperformed a simpler model.
 
-* **Continuous Model:** This simpler model had an R-squared value of only **0.33**, indicating it could only explain about 33% of the variability in car prices. Diagnostic plots for this model showed clear violations of the linearity and homoscedasticity assumptions.
-* **Mixed Model:** By including key categorical variables, the model's performance dramatically improved. The R-squared value jumped to **0.94**, meaning the model can explain over 94% of the variability in price.
+* **Continuous Model:** This model, using only `Mileage` and `Liter`, had a R-squared value of **0.33**, indicating it could only explain about a third of the variability in car prices. The diagnostic plots for this model showed clear violations of the linearity, homoscedasticity, and normality assumptions, indicating a poor fit.
 
-This substantial increase in predictive power highlights that features like a car's **Make**, **Type**, and **Cylinder** are far more influential on its price than mileage alone. For instance, the box plot below illustrates the notable price differences across various car makes.
-
+* **Mixed Model:** By adding categorical variables like `Make`, `Type`, and `Cylinder`, the model's performance dramatically improved. The R-squared value jumped to **0.94**, meaning it can explain over 94% of the variability. Diagnostic plots for this model showed a much better fit, although some minor issues with non-normality in the residuals were still present.
 
 
-#### Conclusion:
+![Observed vs. Predicted Prices](images/obs_vs_pred.png)
 
-#### Code and Data:
+For the first plot, **"Observed vs. Predicted Prices"**, the points are closely clustered around the diagonal line, indicating that the mixed model's predicted prices are highly accurate and closely align with the actual prices.
 
-#### How to Run:
+![Residuals vs. Predicted Prices](images/resid_vs_pred_values.png)
+
+For the second plot, **"Residuals vs. Predicted Values"**, the residuals are randomly scattered around the horizontal line at `y=0`, with no clear pattern. This suggests that the model's errors are consistent across all predicted price values, satisfying the assumption of **constant variability (homoscedasticity).**
+
+
+This substantial increase in predictive power proves that a car's Make, Type, and Cylinder are far more influential on its price than mileage alone.
+
+
+### Conclusion
+
+Overall, the **mixed model** is a major improvement over the simpler continuous model. The R-squared value increased from **33% to 94%**, which provides a more reliable and accurate prediction of car prices. While the mixed model still has minor issues with non-normality in the residuals, particularly at high prices, its vastly superior predictive power makes it the ideal choice for this project. If I were picking a car, I would trust the predictions of the mixed model because it is a more reliable and accurate representation of the market.
+
+
+### Code and Data:
+
+### How to Run:
 
