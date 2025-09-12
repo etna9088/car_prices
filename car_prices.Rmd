@@ -31,6 +31,8 @@ car_prices <- read_excel("kuiper.xlsx")
 #### Price and Car Mileage VS. Fuel Capacity
 
 ```{r}
+# The pivot_longer function transforms specified columns into a single column of names and a single column of values.
+# This makes it easy to create a faceted plot, showing multiple relationships at once.
 car_prices %>%
   pivot_longer(
     cols = Mileage | Liter,
@@ -53,39 +55,6 @@ continuous_model %>%
   select(r.squared)
 continuous_model %>%
   tidy()
-```
-#### 3D Model
-
-```{r}
-# predict model plane over values
-lit <- unique(car_prices$Liter)
-mil <- unique(car_prices$Mileage)
-grid <- with(car_prices, expand.grid(lit, mil))
-d <- setNames(data.frame(grid), c("Liter", "Mileage"))
-vals <- predict(continuous_model, newdata = d)
-
-# form surface matrix and give to plotly
-m <- matrix(vals, nrow = length(unique(d$Liter)), ncol = length(unique(d$Mileage)))
-p <- plot_ly() %>%
-  add_markers(
-    x = ~car_prices$Mileage, 
-    y = ~car_prices$Liter, 
-    z = ~car_prices$Price, 
-    marker = list(size = 1)
-    ) %>%
-  add_trace(
-    x = ~mil, y = ~lit, z = ~m, type="surface", 
-    colorscale=list(c(0,1), c("yellow","yellow")),
-    showscale = FALSE
-    ) %>%
-  layout(
-    scene = list(
-      xaxis = list(title = "mileage"),
-      yaxis = list(title = "liters"),
-      zaxis = list(title = "price")
-    )
-  )
-if (!is_pdf) {p}
 ```
 
 ```{r}
@@ -191,6 +160,8 @@ car_prices %>%
 #### Predicitive Modeling
 
 ```{r}
+# The mutate function is used to create a new version of the Cylinder column.
+# We convert it to a factor to tell R to treat it as a categorical variable, which is necessary for the linear model to handle it correctly.
 cars_factor_df <- car_prices %>%
   mutate(Cylinder = as.factor(Cylinder))
 ```
