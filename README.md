@@ -81,5 +81,18 @@ Overall, the **mixed model** is a major improvement over the simpler continuous 
 
 ### Code and Data:
 
+This project was developed in R, with all analysis contained within the `car_prices.Rmd` file. The primary dataset is `kuiper.xlsx`, a file containing over 800 observations of used GM cars from 2005.
+
+The following R packages are required to run the code: `tidyverse`, `broom`, `modelr`, `readxl`, `plotly`.
+
+
 ### How to Run:
+
+To run this analysis, you will need to have **R** and **RStudio** installed on your machine.
+
+1. **Open the R project:** Open the `used-car-price-prediction.Rproj` file in RStudio. This will set your working directory to the project's root folder and ensure the code runs correctly.
+
+2. **Install R packages:** Install the necessary packages by running the following command in the RStudio console: `install.packages(c("tidyverse", "broom", "modelr", "readxl", "plotly"))`.
+
+3. **Run the analysis:** Open the `car_prices.Rmd` file. Click the **"Knit"**  button to run the code and generate the final report with all the results and visualizations. Alternatively, for a more automated approach, you can open the RStudio **Terminal** and run `make`.
 
