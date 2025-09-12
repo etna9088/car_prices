@@ -34,20 +34,32 @@ This project focuses on building a predictive model to accurately estimate the r
 * **Data Context:** This dataset represents a specific, curated snapshot of the used car market in 2005. It's crucial to acknowledge the **assumptions and limitations** of this data, specifically that all vehicles were less than one year old and in **"excellent condition.**" Therefore, the findings of this analysis are most relevant to understanding the **pricing of well-maintained, late-model GM vehicles** and may not generalize to older or less-maintained cars. The data also doesn't account for geographical location, which can significantly impact car prices. 
 
 
+### Key Findings and Results
+
 ##### Exloratory Data Analysis (EDA)
 
-The project began with an exploratory analysis of the `car_prices` dataset. Initial visualizations, including scatter plots and box plots, were used to understand variable distributions and identify preliminary relationships. This process revealed that **Mileage** had a continuous, inverse relationship with price, while variables like **Liter** and **Cylinder** behaved more like categorical variables, with prices clustering around specific, discrete values. I’ve also observed significant price differences across other categorical features like **Make** and **Type**, which highlighted their potential importance as predictors.
+Initial exploration of the data revealed that Mileage has a clear inverse relationship with price. As a car's mileage increases, its price generally decreases, a trend that is visually apparent in the scatter plot below.
+
 
 
 ##### Predictive Modeling
 
-TTwo linear regression models were developed and compared to address the research question. The approach was to start with a simple model and then build a more complex one by incorporating additional features identified during EDA.
+Two linear regression models were developed and compared to address the research question. The approach was to start with a simple model and then build a more complex one by incorporating additional features identified during EDA.
 
 * **Continuous Model:** An initial model was built using only the continuous variables **Mileage** and **Liter** to predict **Price**.
 * **Mixed Model:** A more complex model was developed by adding key categorical variables such as **Make**, **Type**, and **Cylinder**, which were identified as having a strong influence on price.
 
 
-#### Key Findings and Results:
+#### Model Performance
+
+A comparison of the two models demonstrated that the **Mixed Model** significantly outperformed the **Continuous Model** in terms of predictive power.
+
+* **Continuous Model:** This simpler model had an R-squared value of only **0.33**, indicating it could only explain about 33% of the variability in car prices. Diagnostic plots for this model showed clear violations of the linearity and homoscedasticity assumptions.
+* **Mixed Model:** By including key categorical variables, the model's performance dramatically improved. The R-squared value jumped to **0.94**, meaning the model can explain over 94% of the variability in price.
+
+This substantial increase in predictive power highlights that features like a car's **Make**, **Type**, and **Cylinder** are far more influential on its price than mileage alone. For instance, the box plot below illustrates the notable price differences across various car makes.
+
+
 
 #### Conclusion:
 
