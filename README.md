@@ -1,6 +1,6 @@
-### Project Title: Used Car Price Prediction 
+## Project Title: Used Car Price Prediction 
 
-#### Project Description
+### Project Description
 
 This project focuses on building a predictive model to accurately estimate the retail price of used General Motors (GM) cars. By analyzing a dataset of over eight hundred vehicles, I developed a comprehensive linear model to help potential buyers and sellers better understand the factors influencing a car's market value. The analysis revealed that a combination of continuous and categorical features can predict a car's price with a high degree of accuracy.
 
@@ -10,7 +10,7 @@ This project focuses on building a predictive model to accurately estimate the r
 > "What are the key vehicle features and metrics that most significantly impact the retail price of used General Motors (GM) cars in excellent condition?"
 
 
-#### Data Analysis & Methology
+### Data Analysis & Methology
 
 * **Data Source:** This project uses a dataset of over eight hundred used GM cars from 2005. The data was originally sourced from the **2005 Central Edition of Kelly Blue Book,** which is highly reputable resource for vehicle evaluation. A key assumption of this analysis is that all cars in the dataset were less than one year old and considered to be in **"excellent condition.**"
 
@@ -32,6 +32,19 @@ This project focuses on building a predictive model to accurately estimate the r
 | **Leather** | `1` if the car has leather seats, `0` otherwise. |
 
 * **Data Context:** This dataset represents a specific, curated snapshot of the used car market in 2005. It's crucial to acknowledge the **assumptions and limitations** of this data, specifically that all vehicles were less than one year old and in **"excellent condition.**" Therefore, the findings of this analysis are most relevant to understanding the **pricing of well-maintained, late-model GM vehicles** and may not generalize to older or less-maintained cars. The data also doesn't account for geographical location, which can significantly impact car prices. 
+
+
+##### Exloratory Data Analysis (EDA)
+
+The project began with an exploratory analysis of the `car_prices` dataset. Initial visualizations, including scatter plots and box plots, were used to understand variable distributions and identify preliminary relationships. This process revealed that **Mileage** had a continuous, inverse relationship with price, while variables like **Liter** and **Cylinder** behaved more like categorical variables, with prices clustering around specific, discrete values. I’ve also observed significant price differences across other categorical features like **Make** and **Type**, which highlighted their potential importance as predictors.
+
+
+##### Predictive Modeling
+
+TTwo linear regression models were developed and compared to address the research question. The approach was to start with a simple model and then build a more complex one by incorporating additional features identified during EDA.
+
+* **Continuous Model:** An initial model was built using only the continuous variables **Mileage** and **Liter** to predict **Price**.
+* **Mixed Model:** A more complex model was developed by adding key categorical variables such as **Make**, **Type**, and **Cylinder**, which were identified as having a strong influence on price.
 
 
 #### Key Findings and Results:

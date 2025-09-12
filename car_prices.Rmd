@@ -18,16 +18,12 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(broom))
 suppressPackageStartupMessages(library(modelr))
 suppressPackageStartupMessages(library(plotly))
-# Load dataset
-car_prices <- read_rds("car_price_data.rds")
+# Load the data from .xlsx file
+car_prices <- read_excel("kuiper.xlsx")
 ```
 
+### Preprocessing
 
-## Exercise 1
-
-i. Price and mileage are the two continuous variables in car_prices dataset.
-
-ii. 
 ```{r}
 car_prices %>%
   pivot_longer(
@@ -42,7 +38,8 @@ car_prices %>%
        y = "Price")
 ```
 
-## Exercise 2
+
+### Continuous Model
 
 ```{r}
 continuous_model <- lm(Price ~ Mileage + Liter, data = car_prices)
@@ -52,7 +49,8 @@ continuous_model %>%
 continuous_model %>%
   tidy()
 ```
-## Exercise 3
+
+### 3D Model
 
 ```{r}
 # predict model plane over values
