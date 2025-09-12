@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 ```{r setup, include = FALSE}
 # DO NOT ALTER THIS CHUNK
@@ -18,6 +23,7 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(broom))
 suppressPackageStartupMessages(library(modelr))
 suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(readxl))
 # Load the data from .xlsx file
 car_prices <- read_excel("kuiper.xlsx")
 ```
